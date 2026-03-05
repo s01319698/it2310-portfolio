@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-       <!--meta information for the page-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--meta information for the page-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Java Haven</title>
     <style>
-
         /* ==== RESET & BASE Format ====*/
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: Georgia, 'Times New Roman', serif;
             min-height: 100vh;
             display: grid;
             grid-template-rows: auto auto 1fr auto;
-            grid-template-areas: 
+            grid-template-areas:
                 "header"
                 "nav"
                 "main"
@@ -34,11 +30,8 @@
             text-align: center;
         }
 
-        /*Navagation style*/
-        .nav {
-            grid-area: nav;
-            background-color: #d2691e; /* Medium brown */
-        }
+        /* Navigation style */
+        .nav { grid-area: nav; background-color: #d2691e; }
         .nav ul {
             display: flex;
             justify-content: center;
@@ -47,15 +40,13 @@
             padding: 1rem;
         }
         .nav a {
-            color: #fcf0cc; /* Cream */
+            color: #fcf0cc;
             text-decoration: none;
             font-weight: bold;
         }
-        .nav a:hover {
-            text-decoration: underline;
-        }
+        .nav a:hover { text-decoration: underline; }
 
-        /*Coffee types style*/
+        /* Main content styles */
         .main-content {
             grid-area: main;
             padding: 2rem;
@@ -63,15 +54,22 @@
         }
         .main-content h2 {
             text-align: center;
-            margin-bottom: 1.5rem;
-            color: #3a1a03; /* Dark brown */
+            margin-bottom: 0.5rem;
+            color: #3a1a03;
+        }
+        .section-desc {
+            max-width: 60ch;
+            margin: 0.5rem auto 1.5rem;
+            text-align: center;
+            color: #4b2a14;
+            line-height: 1.5;
         }
 
-        /*Footer style*/
+        /* Footer style */
         .footer {
             grid-area: footer;
-            background-color: #3a1a03; /* Dark brown */
-            color: #fcf0cc; /* Cream */
+            background-color: #3a1a03;
+            color: #fcf0cc;
             padding: 1rem;
             text-align: center;
         }
@@ -84,54 +82,263 @@
             justify-content: center;
         }
         .flex-item {
-            background-color: #805130; /* Coffee  brown */
-            color: #fcf0cc; /* Cream */
-            padding: 2rem 3rem;
+            background-color: #805130; /* Coffee brown */
+            color: #fcf0cc;
+            padding: 1.25rem 1.25rem 1rem;
             text-align: center;
-            border-radius: 10px;
-            font: 1.2em bold sans-serif;
-            min-width: 150px;
+            border-radius: 12px;
+            min-width: 220px;
+            max-width: 260px;
+            box-shadow: 0 6px 14px rgba(58, 26, 3, 0.15);
         }
+
+        /* Image styling */
+        .coffee-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Button/label */
+        .coffee-btn {
+            all: unset;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font: 600 1.05rem/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            padding: 0.25rem 0;
+        }
+        .coffee-btn:focus-visible {
+            outline: 3px solid #fcf0cc;
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        /* Description (collapsible) */
+        .coffee-desc {
+            margin-top: 0.65rem;
+            background: #6f4426; /* slightly darker */
+            color: #fff8e6;
+            padding: 0.75rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.35;
+            display: none;            /* hidden by default */
+        }
+        .flex-item.active .coffee-desc { display: block; }
+
+        /* Clickable area wrapper to allow image/name to toggle */
+        .coffee-toggle {
+            display: block;
+        }
+
+        /* ===== NEW: About section styling ===== */
+        .about-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff8e6;
+            border: 2px solid #d8c299;
+            border-radius: 14px;
+            box-shadow: 0 8px 18px rgba(58,26,3,0.12);
+            overflow: hidden;
+        }
+        .about-inner {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 1rem;
+            padding: 1.25rem;
+            align-items: center;
+        }
+        .owner-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid #d2691e;
+            background: #f0e6d2;
+        }
+        .about-title {
+            margin-bottom: 0.35rem;
+            color: #3a1a03;
+            font-size: 1.35rem;
+        }
+        .about-text {
+            color: #4b2a14;
+            line-height: 1.55;
+        }
+        .yoda-quote {
+            margin-top: 0.75rem;
+            font-style: italic;
+            color: #6b3c1d;
+        }
+
         /* ===== RESPONSIVE: MOBILE ===== */
         @media (max-width: 600px) {
-            .nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
+            .nav ul { flex-direction: column; align-items: center; gap: 0.5rem; }
+            .flex-item { width: 100%; max-width: 500px; }
+            .coffee-img { height: 190px; }
+
+            /* NEW: Stack About section on mobile */
+            .about-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            .flex-item {
-                width: 100%;
+            .owner-img {
+                margin: 0 auto;
             }
         }
     </style>
-    </head>
-        <body>
-            <header class="header">
-                <h1>Java Haven</h1>
-                <p>Your daily dose of caffeine and comfort.</p>
-            </header>
+</head>
+<body>
+    <header class="header">
+        <h1>Java Haven</h1>
+        <p>Your daily dose of caffeine and comfort.</p>
+    </header>
 
-            <!-- Navagation -->
-             <nav class="nav">
-                <ul>
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-             </nav>
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul>
+            <li><a href="#menu" title="Jump to our coffee selection">Menu</a></li>
+            <li><a href="#about" title="Learn more about us">About Us</a></li>
+            <li> <a href="mailto:s01319698@acad.tri-c.edu">Contact Us</a></li>
+        </ul>
+    </nav>
 
-             <!--Coffee types-->
-             <main class="main-content">
-                <h2>Featured Coffees</h2>
-                <div class="flex-container">
-                    <div class="flex-item">Espresso</div>
-                    <div class="flex-item">Cappuccino</div>
-                    <div class="flex-item">Latte</div>
-                    <div class="flex-item">Mocha</div>
-             </div>
-            </main>
-            <footer class="footer">
-                <p>&copy; 2025 Java Haven. All Rights Reserved.</p>
-            </footer>
-        </body>
+    <!-- Main -->
+    <main class="main-content">
+        <!-- Coffee types section with the anchor target -->
+        <section id="menu" aria-labelledby="menu-heading">
+            <h2 id="menu-heading">Featured Coffees</h2>
+            <p class="section-desc">
+                Explore our most-loved coffee styles—from bold, concentrated espresso to creamy, comforting lattes.
+                Every cup is crafted with freshly roasted beans for rich flavor and a smooth finish.
+            </p>
+
+            <div class="flex-container" id="coffee-list">
+                <!-- ESPRESSO -->
+                <div class="flex-item" data-desc="A rich, concentrated shot with a thick crema—pure coffee intensity.">
+                    <button class="coffee-btn coffee-toggle" aria-expanded="false">
+                        <img class="coffee-img" alt="Espresso in a demitasse cup"
+                             src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG">
+                        Espresso
+                    </button>
+                    <p class="coffee-desc" hidden></p>
+                </div>
+
+                <!-- CAPPUCCINO -->
+                <div class="flex-item" data-desc="Equal parts espresso, steamed milk, and airy foam for a balanced, silky cup.">
+                    <button class="coffee-btn coffee-toggle" aria-expanded="false">
+                        <img class="coffee-img" alt="Cappuccino with foam art"
+                             src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Cappuccino_at_Sightglass_Coffee.jpg">
+                        Cappuccino
+                    </button>
+                    <p class="coffee-desc" hidden></p>
+                </div>
+
+                <!-- LATTE (your base64 data URI) -->
+                <div class="flex-item" data-desc="Smooth espresso mellowed with plenty of steamed milk and a light cap of foam.">
+                    <button class="coffee-btn coffee-toggle" aria-expanded="false">
+                        <img class="coffee-img" alt="Latte with art" 
+                             src="data:image/webp;base64,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" />
+                        Latte
+                    </button>
+                    <p class="coffee-desc" hidden></p>
+                </div>
+
+                <!-- MOCHA -->
+                <div class="flex-item" data-desc="Chocolate meets espresso—velvety, mildly sweet, and wonderfully indulgent.">
+                    <button class="coffee-btn coffee-toggle" aria-expanded="false">
+                        <img class="coffee-img" alt="Mocha coffee with chocolate"
+                             src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Mocaccino-Coffee.jpg">
+                        Mocha
+                    </button>
+                    <p class="coffee-desc" hidden></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEW: About section content ===== -->
+  
+<section id="about" aria-label="About Java Haven" style="margin-top:3rem;">
+    <h2>About Us</h2>
+    <p class="section-desc">Meet the master brewer who steers Java Haven.</p>
+
+    <article class="about-card" aria-labelledby="owner-heading">
+        <div class="about-inner">
+            <!-- NEW IMAGE -->
+            <img class="owner-img" 
+                 src="https://www.bing.com/th/id/OIP.h8ggL9pypaBksPNWAcPpVgHaIQ?w=186&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+                 alt="Wise green alien character resembling Yoda" />
+
+            <div>
+                <h3 id="owner-heading" class="about-title">Owner & Master Brewer: Yoda</h3>
+                <p class="about-text">
+                    Brew, do or do not—there is no try. For centuries, craft coffee I have studied.
+                    Balance in every cup, I seek. At Java Haven, teach we do the ways of aroma, crema,
+                    and patience. Warmth, community, and a touch of the Force you will find here.
+                </p>
+                <p class="yoda-quote">“Strong with espresso, this place is.”</p>
+
+                <!-- Email link -->
+                <p style="margin-top:1rem;">
+                    📧 Contact the owner directly:
+                    <a href="mailto:s01319698@acad.tri-c.edu">s01319698@acad.tri-c.edu</a>
+                </p>
+            </div>
+        </div>
+    </article>
+</section>
+
+
+
+    <footer class="footer">
+        <p>&copy; 2025 Java Haven. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle short description on click (image or label)
+        const list = document.getElementById('coffee-list');
+
+        list.addEventListener('click', (e) => {
+            const btn = e.target.closest('.coffee-btn');
+            if (!btn) return;
+
+            const item = btn.closest('.flex-item');               // .flex-item
+            const descEl = item.querySelector('.coffee-desc');
+            const text = item.getAttribute('data-desc') || '';
+            const isOpening = !item.classList.contains('active');
+
+            // Close any other open item
+            list.querySelectorAll('.flex-item.active').forEach(openItem => {
+                if (openItem !== item) {
+                    openItem.classList.remove('active');
+                    const openBtn = openItem.querySelector('.coffee-btn');
+                    const openDesc = openItem.querySelector('.coffee-desc');
+                    openBtn.setAttribute('aria-expanded', 'false');
+                    openDesc.hidden = true;
+                    openDesc.textContent = '';
+                }
+            });
+
+            // Toggle current
+            if (isOpening) {
+                item.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                descEl.textContent = text;
+                descEl.hidden = false;
+            } else {
+                item.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                descEl.hidden = true;
+                descEl.textContent = '';
+            }
+        });
+    </script>
+</body>
 </html>

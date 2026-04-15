@@ -1,211 +1,101 @@
-/*Global Styles*/ 
-
-body { 
-
-    background-color: #320949; 
-
-    font-family: Helvetica, Arial, sans-serif; 
-
-    color: white; 
-
-    text-align: center; 
-
-    min-height: 100vh; 
-
-    display: grid; 
-
-    grid-template-rows: auto 1fr auto; 
-
-    grid-template-areas: 
-
-                "header" 
-
-                "main" 
-
-                "footer"; 
-
-} 
-
- 
-
-/*`Header styles*/ 
-
-.header { 
-
-    grid-area: header; 
-
-
-    padding: .5rem; 
-
-} 
-
- 
-
-/*Main content styles*/ 
-
-.main-content { 
-    grid-area: main; 
-    padding: .5rem; 
-
-} 
-
- 
-
-/*Footer styles*/ 
-
-.footer { 
-
-    grid-area: footer; 
-
-
-    padding: .5rem; 
-
-} 
-
-/* Box types 
-
-para-box 
-
-list-box 
-
-image-box 
-
-*/ 
-
- 
-
-/*Universal box styles*/ 
-
-* { 
-
-    box-sizing: border-box; 
-
-    border-radius: 5rem; 
-
-    padding: .5rem; 
-
-    margin: 20px; 
-
-} 
-
- 
-
-/*Paragraph box styles*/ 
-
-.para-box { 
-
-    background-color: rgb(9, 192, 155); 
-
-    border-radius: 1rem; 
-
-    border-top-right-radius: 5rem; 
-
-    border-bottom-right-radius: 5rem; 
-
-} 
-
-/*List box styles*/ 
-
-.list-box {  
-
-    background-color: rgb(9, 155, 192); 
-
-    display: flex; 
-
-    flex-direction: column; 
-
-    justify-content: center; 
-
- 
-
-} 
-
-/*Image box styles*/ 
-
-.image-box { 
-
-    justify-content: center; 
-
-    background-image: url('galaxy.jpg'); 
-
-    box-shadow: cyan 0px 0px 10px, cyan 0px 0px 20px, cyan 0px 0px 30px; 
-
-} 
-
-/*button styles*/ 
-
-button { 
-
-    background-color: rgb(198, 243, 139); 
-
-    color: rgb(35, 19, 255); 
-
-    border: none; 
-
-    padding: .5rem 1rem; 
-
-    cursor: pointer; 
-
-    font-size: 1rem; 
-
-    transition: background-color 0.3s ease; 
-
-} 
-
-  
-
-/*text styles*/ 
-
-h1 { 
-
-    font-size: 3rem; 
-
-} 
-
-h2 { 
-
-    font-size: 2rem; 
-
-} 
-
-p { 
-
-    font-size: 1.2rem; 
-
-    text-shadow: 1px 1px 2px #000000; 
-
-} 
-
-ul { 
-
-    list-style-type: none; 
-
-    padding: 0; 
-
-} 
-
- 
-
-/*mobile responsiveness*/ 
-
-@media (max-width: 600px) { 
-
-    body { 
-
-        grid-template-rows: auto 1fr auto; 
-
-        grid-template-areas: 
-
-                    "header" 
-
-                    "main" 
-
-                    "footer"; 
-
-                    background-color: black; 
-
-    } 
-
-} 
-
- 
+/*Global Styles*/
+body {
+    background-color: #320949;
+    font-family: Helvetica, Arial, sans-serif;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+
+}
+
+/* Box types
+para-box
+list-box
+image-box
+*/
+
+/*Universal box styles*/
+* {
+    box-sizing: border-box;
+    border-radius: 5rem;
+    padding: .5rem;
+    margin: 20px;
+}
+
+/*Paragraph box styles*/
+.para-box {
+    background-color: rgb(9, 192, 155);
+    border-radius: 1rem;
+    border-top-right-radius: 5rem;
+    border-bottom-right-radius: 5rem;
+}
+/*List box styles*/
+.list-box { 
+    background-color: rgb(9, 155, 192);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+/*Image box styles*/
+.image-box {
+    justify-content: center;
+    background-image: url('galaxy.jpg');
+    box-shadow: cyan 0px 0px 10px, cyan 0px 0px 20px, cyan 0px 0px 30px;
+}
+/*button styles*/
+button {
+    background-color: rgb(198, 243, 139);
+    color: rgb(35, 19, 255);
+    border: none;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/*text styles*/
+h1 {
+    font-size: 3rem;
+}
+h2 {
+    font-size: 2rem;
+}
+p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px #000000;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/*parallax background image */
+.parallax-1 {
+    background-image: url('Star Wars blast door.png');
+    height: 100vh; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax-2 {
+    background-image: url('Deat-trooper.jpg');
+    height: 100vh; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*mobile responsiveness*/
+@media (max-width: 600px) {
+    body {
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+                    "header"
+                    "main"
+                    "footer";
+                    background-color: black;
+    }
+}

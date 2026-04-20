@@ -15,8 +15,13 @@
     <!-- Apply parallax-->
     <div class="parallax-1"></div>  
 
+    <!--custom cursor-->
+    <div class="custom-cursor">
+        <img src="Star-Destroyer_mouse.jpeg" alt="Custom Cursor">
+    </div>
+
     <!--play audio when the page loads-->
-    <audio autoplay loop>
+    <audio autoplay loop muted>
         <source src="starwars.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -137,7 +142,16 @@
         }
     });
 
-</script>
+    // custom cursor movement
+    document.addEventListener('mousemove', function(e) {
+        const cursor = document.querySelector('.custom-cursor');
+        if (cursor) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        }
+    });
+</script> 
+
 <footer class="footer">
     <p>&copy; 2026 Michael J. Jeneviez Jr. All rights reserved.</p> 
 </footer>

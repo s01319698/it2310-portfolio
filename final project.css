@@ -8,6 +8,23 @@ body {
 
 }
 
+/*`Header styles*/
+.header {
+    grid-area: header;
+    padding: .5rem;
+}
+
+/*Main content styles*/
+.main-content {
+    grid-area: main;
+    padding: .5rem;
+}
+
+/*Footer styles*/
+.footer {
+    grid-area: footer;
+    padding: .5rem;
+}
 /* Box types
 para-box
 list-box
@@ -72,7 +89,7 @@ ul {
 
 /*parallax background image */
 .parallax-1 {
-    background-image: url('Star Wars blast door.png');
+    background-image: url('Earth.jpg');
     height: 100vh; 
     background-attachment: fixed;
     background-position: center;
@@ -96,6 +113,5 @@ ul {
                     "header"
                     "main"
                     "footer";
-                    background-color: black;
     }
 }

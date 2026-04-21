@@ -423,6 +423,7 @@ section {
   aspect-ratio: 1;
   background: linear-gradient(135deg, var(--bg-mid), var(--blue-dim));
   border: 2px solid var(--blue-dim);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1219,7 +1220,7 @@ footer .footer-bar {
   <div class="profile-grid">
     <div class="profile-card reveal">
       <div class="profile-avatar">
-        <span class="silhouette">&#9733;</span>
+        <img src="pic of me.jpg" alt="Profile Picture" class="silhouette" style="width: 100%; height: 100%; object-fit: contain;">
         <div class="hud-ring"></div>
       </div>
       <div class="profile-stats">
@@ -1494,6 +1495,11 @@ footer .footer-bar {
   </div>
 </div>
 
+<!-- Background Audio -->
+<audio id="background-audio" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
 <!-- Audio Toggle -->
 <button id="audio-toggle" onclick="toggleAmbient()" aria-label="Toggle ambient audio">&#128266;</button>
 
@@ -1749,41 +1755,22 @@ window.addEventListener('scroll', updateStatusBar);
 updateStatusBar();
 
 /* ═══════════════════════════════════════════════════════
-   AMBIENT AUDIO (Web Audio API — synthesized hum)
+   AMBIENT AUDIO (Background Music Control)
    ═══════════════════════════════════════════════════════ */
-let audioCtx, ambientPlaying = false;
+let ambientPlaying = true;
 function toggleAmbient() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    // Deep space hum
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.value = 60;
-    gain.gain.value = 0.04;
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-
-    // Higher harmonic
-    const osc2 = audioCtx.createOscillator();
-    const gain2 = audioCtx.createGain();
-    osc2.type = 'sine';
-    osc2.frequency.value = 120;
-    gain2.gain.value = 0.015;
-    osc2.connect(gain2);
-    gain2.connect(audioCtx.destination);
-    osc2.start();
-  }
+  const audio = document.getElementById('background-audio');
   if (ambientPlaying) {
-    audioCtx.suspend();
+    audio.pause();
+    ambientPlaying = false;
     document.getElementById('audio-toggle').innerHTML = '&#128264;';
   } else {
-    audioCtx.resume();
+    audio.play();
+    ambientPlaying = true;
     document.getElementById('audio-toggle').innerHTML = '&#128266;';
   }
-  ambientPlaying = !ambientPlaying;
 }
+  
 </script>
 
 </body>
